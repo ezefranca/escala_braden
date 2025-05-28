@@ -252,3 +252,7 @@ google-services.json
 .flutter-plugins
 .idea/modules.xml
 .idea/runConfigurations/main_dart.xml
+/.dart_tool
+/.dart_tool/chrome-device
+/.dart_tool/chrome-device/Default
+*.old
