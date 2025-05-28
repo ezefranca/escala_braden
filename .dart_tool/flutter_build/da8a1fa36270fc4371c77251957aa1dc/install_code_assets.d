@@ -1,0 +1,1 @@
+ /Users/ezequiel.santos/Developer/Github/escalabraden/escala_braden/.dart_tool/flutter_build/da8a1fa36270fc4371c77251957aa1dc/native_assets.json: 
