@@ -1,7 +1,7 @@
 # Escala de Braden - Avaliação de Risco de Lesão por Pressão
 
 <p align="center">
-  <img src="AppIcons/appstore.png" alt="App Icon" width="64" style="border-radius:16px;" />
+  <img src="AppIcons/readme.png" alt="App Icon" width="64" style="border-radius:16px;" />
 </p>
 
 Este aplicativo permite a avaliação offline do risco de lesão por pressão (LPP) utilizando a Escala de Braden, adaptada para o Brasil. Desenvolvido como parte do curso de extensão "Introdução ao Desenvolvimento de Aplicativos Multiplataformas com Flutter" (CET-0390), oferecido pelo professor Ulisses Martins Dias, da Faculdade de Tecnologia da Unicamp.
@@ -36,7 +36,7 @@ A Escala de Braden é um instrumento internacionalmente reconhecido para avalia�
 2. Clone este repositório:
 
    ```sh
-   git clone <url-do-repositorio>
+   git clone https://github.com/ezefranca/escala_braden.git
    ```
 
 3. Instale as dependências:
