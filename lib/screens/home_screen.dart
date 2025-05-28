@@ -1,3 +1,4 @@
+// Tela Inicial do aplicativo, onde se pude adicionar pacientes e acessar avaliações
 import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

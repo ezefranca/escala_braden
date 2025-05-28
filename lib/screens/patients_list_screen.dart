@@ -1,3 +1,5 @@
+// Tela principal que exibe a lista de pacientes
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../models/patient.dart';

@@ -10,6 +10,7 @@ import 'screens/patients_list_screen.dart';
 import 'screens/new_evaluation_screen.dart';
 import 'screens/summary_view.dart';
 import 'providers/braden_score_provider.dart';
+import 'providers/braden_state.dart';
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
@@ -31,57 +32,61 @@ class App extends StatelessWidget {
       fontFamily: isIOS ? 'SF Pro' : GoogleFonts.roboto().fontFamily,
       brightness: Brightness.dark,
     );
-    return ChangeNotifierProvider(
-      create: (_) => BradenScoreProvider(),
-      child: isIOS
-          ? CupertinoApp(
-              localizationsDelegates: const [
-                DefaultMaterialLocalizations.delegate,
-                DefaultWidgetsLocalizations.delegate,
-                DefaultCupertinoLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [Locale('pt', 'BR')],
-              theme: const CupertinoThemeData(brightness: Brightness.light),
-              navigatorObservers: [routeObserver],
-              routes: {
-                '/': (context) => const PatientsListScreen(),
-                '/history': (context) => const HistoryScreen(),
-                '/new_evaluation': (context) => const NewEvaluationScreen(patientId: ''),
-                '/result': (context) {
-                  final args = ModalRoute.of(context)?.settings.arguments;
-                  if (args is BradenEvaluation) {
-                    return SummaryView(evaluation: args);
-                  }
-                  return const Scaffold(body: Center(child: Text('Avaliação não encontrada.')));
+    final provider = BradenScoreProvider();
+    return BradenState(
+      provider: provider,
+      child: ChangeNotifierProvider<BradenScoreProvider>.value(
+        value: provider,
+        child: isIOS
+            ? CupertinoApp(
+                localizationsDelegates: const [
+                  DefaultMaterialLocalizations.delegate,
+                  DefaultWidgetsLocalizations.delegate,
+                  DefaultCupertinoLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: const [Locale('pt', 'BR')],
+                theme: const CupertinoThemeData(brightness: Brightness.light),
+                navigatorObservers: [routeObserver],
+                routes: {
+                  '/': (context) => const PatientsListScreen(),
+                  '/history': (context) => const HistoryScreen(),
+                  '/new_evaluation': (context) => const NewEvaluationScreen(patientId: ''),
+                  '/result': (context) {
+                    final args = ModalRoute.of(context)?.settings.arguments;
+                    if (args is BradenEvaluation) {
+                      return SummaryView(evaluation: args);
+                    }
+                    return const Scaffold(body: Center(child: Text('Avaliação não encontrada.')));
+                  },
                 },
-              },
-            )
-          : MaterialApp(
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [Locale('pt', 'BR')],
-              theme: theme,
-              darkTheme: darkTheme,
-              navigatorObservers: [routeObserver],
-              routes: {
-                '/': (context) => const PatientsListScreen(),
-                '/history': (context) => const HistoryScreen(),
-                '/new_evaluation': (context) => const NewEvaluationScreen(patientId: ''),
-                '/result': (context) {
-                  final args = ModalRoute.of(context)?.settings.arguments;
-                  if (args is BradenEvaluation) {
-                    return SummaryView(evaluation: args);
-                  }
-                  return const Scaffold(body: Center(child: Text('Avaliação não encontrada.')));
+              )
+            : MaterialApp(
+                localizationsDelegates: const [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: const [Locale('pt', 'BR')],
+                theme: theme,
+                darkTheme: darkTheme,
+                navigatorObservers: [routeObserver],
+                routes: {
+                  '/': (context) => const PatientsListScreen(),
+                  '/history': (context) => const HistoryScreen(),
+                  '/new_evaluation': (context) => const NewEvaluationScreen(patientId: ''),
+                  '/result': (context) {
+                    final args = ModalRoute.of(context)?.settings.arguments;
+                    if (args is BradenEvaluation) {
+                      return SummaryView(evaluation: args);
+                    }
+                    return const Scaffold(body: Center(child: Text('Avaliação não encontrada.')));
+                  },
                 },
-              },
-            ),
+              ),
+      ),
     );
   }
 }
